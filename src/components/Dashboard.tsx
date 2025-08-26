@@ -70,6 +70,15 @@ const Dashboard: React.FC = () => {
     message.success('成本数据上传成功！');
   };
 
+  // 重置数据
+  const handleResetData = () => {
+    setRevenueData([]);
+    setCostData([]);
+    localStorage.removeItem('financialDashboard_revenueData');
+    localStorage.removeItem('financialDashboard_costData');
+    message.success('数据已重置！');
+  };
+
   // 检查是否有数据
   const hasData = revenueData.length > 0 || costData.length > 0;
 
@@ -381,7 +390,7 @@ const Dashboard: React.FC = () => {
           <DataUpload
             onRevenueDataUpload={handleRevenueDataUpload}
             onCostDataUpload={handleCostDataUpload}
-            onResetData={() => {}}
+            onResetData={handleResetData}
             hasData={hasData}
           />
         );
